@@ -10,6 +10,7 @@ const CompanyExpenseTable: React.FC<CompanyExpenseTableProps> = ({
 }) => {
   return (
     <div>
+      <h3>Company Expense Table</h3>
       <table>
         <thead>
           <tr>

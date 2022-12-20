@@ -15,6 +15,7 @@ const UserTable: React.FC<UserTableProps> = ({
 }) => {
   return (
     <div>
+      <h3>User Table</h3>
       <table>
         <thead>
           <tr>

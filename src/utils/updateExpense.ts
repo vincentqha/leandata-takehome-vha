@@ -22,13 +22,13 @@ export async function updateExpense(payload: {
     };
 
     const newExpenses = [...expenses];
-    const prevExpense = newExpenses[expenseIndex];
+    const prevExpense = { ...expenses[expenseIndex] };
 
-    // Call the APi
+    // Call the API
 
     await Api.updateExpense(expense);
 
-    // Find the previous category and the new category
+    // If category changed, update the previous and new category totals by subtracting / adding the cost
 
     if (expense.category !== prevExpense.category) {
       const prevCategoryExpenseIndex = categoryExpenses.findIndex(
@@ -38,11 +38,9 @@ export async function updateExpense(payload: {
         (c) => c.category === expense.category
       );
 
-      // Check to see if category was changed
+      // If prev and new category exists, update their totals
 
       if (prevCategoryExpenseIndex !== -1 && newCategoryExpenseIndex !== -1) {
-        // If category changed, update the previous and new category totals by subtracting / adding the cost
-
         const newCategoryExpenses = [...categoryExpenses];
 
         // Remove the old expense's cost from the previous category
@@ -51,7 +49,7 @@ export async function updateExpense(payload: {
           ...newCategoryExpenses[prevCategoryExpenseIndex],
           totalExpenses:
             newCategoryExpenses[prevCategoryExpenseIndex].totalExpenses -
-            newExpenses[prevCategoryExpenseIndex].cost,
+            prevExpense.cost,
         };
 
         // Add the new expense's cost to the new category
@@ -72,16 +70,18 @@ export async function updateExpense(payload: {
         (c) => c.category === expense.category
       );
 
-      // If category exists, add the new expense's cost ot the category
+      // If category exists, add the difference between the old and new expenses' cost to the category
 
       if (newCategoryExpenseIndex !== -1) {
         const newCategoryExpenses = [...categoryExpenses];
+
+        const expenseDifference = expense.cost - prevExpense.cost;
 
         newCategoryExpenses[newCategoryExpenseIndex] = {
           ...newCategoryExpenses[newCategoryExpenseIndex],
           totalExpenses:
             newCategoryExpenses[newCategoryExpenseIndex].totalExpenses +
-            expense.cost,
+            expenseDifference,
         };
 
         updated.categoryExpenses = newCategoryExpenses;
@@ -104,8 +104,7 @@ export async function updateExpense(payload: {
         newUsers[prevUserIndex] = {
           ...newUsers[prevUserIndex],
           totalExpenses:
-            newUsers[prevUserIndex].totalExpenses -
-            newExpenses[prevUserIndex].cost,
+            newUsers[prevUserIndex].totalExpenses - prevExpense.cost,
         };
 
         // Add the new expense's cost to the new user
@@ -125,11 +124,14 @@ export async function updateExpense(payload: {
       if (newUserIndex !== -1) {
         const newUsers = [...users];
 
-        // Add the new expense's cost to the user
+        // Add the difference between the old and new expenses' cost to the user
+
+        const expenseDifference = expense.cost - prevExpense.cost;
 
         newUsers[newUserIndex] = {
           ...newUsers[newUserIndex],
-          totalExpenses: newUsers[newUserIndex].totalExpenses + expense.cost,
+          totalExpenses:
+            newUsers[newUserIndex].totalExpenses + expenseDifference,
         };
 
         updated.users = newUsers;

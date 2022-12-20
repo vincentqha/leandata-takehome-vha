@@ -21,6 +21,7 @@ const ExpenseTable: React.FC<ExpenseTableProps> = ({
 }) => {
   return (
     <div>
+      <h3>Expense Table</h3>
       <table>
         <thead>
           <tr>
