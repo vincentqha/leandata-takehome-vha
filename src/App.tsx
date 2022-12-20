@@ -4,10 +4,15 @@ import UserTable, { UserTableProps } from "./components/UserTable";
 import { CategoryExpense, User } from "./models";
 import { deleteUser } from "./utils/deleteUser";
 import { Api } from "./api";
-import { ExpenseTableItem } from "./components/ExpenseTable";
+import ExpenseTable, {
+  ExpenseTableItem,
+  ExpenseTableProps,
+} from "./components/ExpenseTable";
 import { updateUser } from "./utils/updateUser";
 import AddUserForm from "./components/AddUserForm";
 import { convertExpenseToExpenseTableItem } from "./utils/expenseTableItem";
+import { deleteExpense } from "./utils/deleteExpense";
+import { updateExpense } from "./utils/updateExpense";
 
 function App() {
   const [users, setUsers] = useState<Array<User>>([]);
@@ -69,6 +74,40 @@ function App() {
     setUsers([...users, user]);
   }
 
+  const handleExpenseSave: ExpenseTableProps["onExpenseSave"] = async (
+    expense
+  ) => {
+    const result = await updateExpense({
+      expense,
+      expenses,
+      categoryExpenses,
+      users,
+    });
+
+    if (result) {
+      setExpenses(result.expenses);
+      setCategoryExpenses(result.categoryExpenses);
+      setUsers(result.users);
+    }
+  };
+
+  const handleExpenseDelete: ExpenseTableProps["onExpenseDelete"] = async (
+    id
+  ) => {
+    const result = await deleteExpense({
+      id,
+      expenses,
+      categoryExpenses,
+      users,
+    });
+
+    if (result) {
+      setExpenses(result.expenses);
+      setCategoryExpenses(result.categoryExpenses);
+      setUsers(result.users);
+    }
+  };
+
   return (
     <div className="App">
       <h1>LeanData Take Home Project</h1>
@@ -78,6 +117,12 @@ function App() {
         onUserDelete={handleUserDelete}
       />
       <AddUserForm onSubmit={handleUserSubmit} />
+      <ExpenseTable
+        expenses={expenses}
+        users={users}
+        onExpenseDelete={handleExpenseDelete}
+        onExpenseSave={handleExpenseSave}
+      />
     </div>
   );
 }
