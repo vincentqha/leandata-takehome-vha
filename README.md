@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+I built this project without may libraries to keep in mind that libraries require buy-in from the team. I wanted to showcase my raw React Typescript skills. I used Zest to write tests for unit testing.
+
 ## Available Scripts
 
 In the project directory, you can run:
