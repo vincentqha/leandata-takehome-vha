@@ -15,6 +15,7 @@ import { deleteExpense } from "./utils/deleteExpense";
 import { updateExpense } from "./utils/updateExpense";
 import AddExpenseForm from "./components/AddExpenseForm";
 import { addExpense } from "./utils/addExpense";
+import CompanyExpenseTable from "./components/CompanyExpenseTable";
 
 function App() {
   const [users, setUsers] = useState<Array<User>>([]);
@@ -139,6 +140,7 @@ function App() {
         onExpenseSave={handleExpenseSave}
       />
       <AddExpenseForm onSubmit={handleExpenseSubmit} users={users} />
+      <CompanyExpenseTable categoryExpenses={categoryExpenses} />
     </div>
   );
 }
