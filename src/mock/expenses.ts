@@ -1,0 +1,81 @@
+import { Expense } from "../models";
+
+export const mockExpenses: Array<Expense> = [
+  {
+    id: "1b8fe422-549d-4deb-ab9f-7162b0e805af",
+    userId: "23e1085c-5c69-4aa5-a3cf-7da403f8fa1a",
+    category: "Food",
+    description: "company party",
+    cost: 100,
+  },
+  {
+    id: "dc55a56c-32ce-464d-80fa-5b117f137f2d",
+    userId: "3683c058-87fd-4e21-8a2a-bf81cc6a14d9",
+    category: "Travel",
+    description: "company trip",
+    cost: 200,
+  },
+  {
+    id: "e9a5b2ec-3e36-4c11-9263-0a38c306fad4",
+    userId: "865c53c6-01fa-4fae-84c3-58c22395deee",
+    category: "Equipment",
+    description: "company computer",
+    cost: 500,
+  },
+  {
+    id: "a599a30f-f292-4878-ac59-8dcb87951b8e",
+    userId: "12e145f5-6172-4f87-9a14-eac848843299",
+    category: "Equipment",
+    description: "company car",
+    cost: 1000,
+  },
+  {
+    id: "e812a855-6832-4cd2-8626-c6d8eff3ac83",
+    userId: "b26e6ee6-c934-419f-bc6b-70b91cac8047",
+    category: "Food",
+    description: "lunch with Spotify",
+    cost: 50,
+  },
+  {
+    id: "a23c5702-d24c-4e5c-b18c-170188c1ad7a",
+    userId: "47ba9905-de59-417c-82cd-545cf7b3d912",
+    category: "Travel",
+    description: "expo",
+    cost: 100,
+  },
+  {
+    id: "1dc15306-822a-4943-a26f-33225ee64a69",
+    userId: "9cae93ac-cdaa-4368-89bd-e0139edb9344",
+    category: "Travel",
+    description: "company retreat",
+    cost: 200,
+  },
+  {
+    id: "4453b335-85c5-4507-a855-9d53c4a880c5",
+    userId: "23e1085c-5c69-4aa5-a3cf-7da403f8fa1a",
+    category: "Food",
+    description: "snacks",
+    cost: 500,
+  },
+  {
+    id: "3939e834-35b5-4a00-a120-ecd7b6ef76d8",
+    userId: "44513d37-fbc2-41e0-a5d3-f0d2fd6003cf",
+    category: "Equipment",
+    description: "desk",
+    cost: 300,
+  },
+  {
+    id: "09279287-5ee2-4771-a80d-838851186487",
+    userId: "7347236e-c53e-41ca-81c8-b53baf9febe9",
+    category: "Equipment",
+    description: "chair",
+    cost: 100,
+  },
+  {
+    id: "a0b12517-7df6-47ec-b016-83357a2c1f84",
+    userId: "95578742-42e6-4ffc-bc42-07e62eafb1fe",
+    category: "Equipment",
+    description: "monitor",
+    cost: 500,
+  },
+];
