@@ -126,25 +126,27 @@ function App() {
 
   return (
     <div className="App">
-      <h1>LeanData Take Home Project</h1>
+      <h1 className="App-header">LeanData Tables Project</h1>
 
       <div className="dashboard">
         <div>
-          <UserTable
-            users={users}
-            onUserSave={handleUserSave}
-            onUserDelete={handleUserDelete}
-          />
-          <AddUserForm onSubmit={handleUserSubmit} />
-        </div>
-        <div>
-          <ExpenseTable
-            expenses={expenses}
-            users={users}
-            onExpenseDelete={handleExpenseDelete}
-            onExpenseSave={handleExpenseSave}
-          />
-          <AddExpenseForm onSubmit={handleExpenseSubmit} users={users} />
+          <div>
+            <UserTable
+              users={users}
+              onUserSave={handleUserSave}
+              onUserDelete={handleUserDelete}
+            />
+            <AddUserForm onSubmit={handleUserSubmit} />
+          </div>
+          <div>
+            <ExpenseTable
+              expenses={expenses}
+              users={users}
+              onExpenseDelete={handleExpenseDelete}
+              onExpenseSave={handleExpenseSave}
+            />
+            <AddExpenseForm onSubmit={handleExpenseSubmit} users={users} />
+          </div>
         </div>
         <CompanyExpenseTable categoryExpenses={categoryExpenses} />
       </div>
