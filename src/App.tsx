@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import UserTable, { UserTableProps } from "./components/UserTable";
-import { CategoryExpense, User } from "./models";
+import { CategoryExpense, Expense, User } from "./models";
 import { deleteUser } from "./utils/deleteUser";
 import { Api } from "./api";
 import ExpenseTable, {
@@ -13,6 +13,8 @@ import AddUserForm from "./components/AddUserForm";
 import { convertExpenseToExpenseTableItem } from "./utils/expenseTableItem";
 import { deleteExpense } from "./utils/deleteExpense";
 import { updateExpense } from "./utils/updateExpense";
+import AddExpenseForm from "./components/AddExpenseForm";
+import { addExpense } from "./utils/addExpense";
 
 function App() {
   const [users, setUsers] = useState<Array<User>>([]);
@@ -108,6 +110,19 @@ function App() {
     }
   };
 
+  async function handleExpenseSubmit(payload: Omit<Expense, "id">) {
+    const result = await addExpense({
+      expense: payload,
+      expenses,
+      categoryExpenses,
+      users,
+    });
+
+    setExpenses(result.expenses);
+    setCategoryExpenses(result.categoryExpenses);
+    setUsers(result.users);
+  }
+
   return (
     <div className="App">
       <h1>LeanData Take Home Project</h1>
@@ -123,6 +138,7 @@ function App() {
         onExpenseDelete={handleExpenseDelete}
         onExpenseSave={handleExpenseSave}
       />
+      <AddExpenseForm onSubmit={handleExpenseSubmit} users={users} />
     </div>
   );
 }
