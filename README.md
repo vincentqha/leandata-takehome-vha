@@ -1,6 +1,6 @@
-# LeanData Table Project by Vincent Ha
+# Tables Project
 
-I built this project without libraries to be mindful that libraries require buy-in/agreement from the team and I wanted to showcase my raw React Typescript knowledge. I used Zest to write tests for unit testing.
+I built this project without libraries to be mindful that libraries require buy-in/agreement from the team and I wanted to showcase my raw React Typescript skills. I used Zest to write tests for unit testing.
 
 # Getting Started with Create React App
 
